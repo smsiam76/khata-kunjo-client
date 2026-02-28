@@ -54,3 +54,7 @@ a.active {
   background: #e3790e;
 
 }
+
+.react-tabs__tab--selected{
+  color:#e3790e;
+}

@@ -2,27 +2,21 @@ import React from "react";
 
 import { FaHeart, FaLink, FaRegStar, FaStar } from "react-icons/fa";
 import Button from "../Button/Button";
+import { Link } from "react-router";
 
-const ProductCard = () => {
-  const product = {
-    name: "Casual Shoes",
-    category: "Sports",
-    price: 100,
-    offerPrice: 80,
-    rating: 4,
-    image:
-      "https://rokbucket.rokomari.io/ProductNew20190903/260X372/Floral_Spiral_Khata_96_Page_Any_Design-Hearts_Bangladesh-0ac2f-90434.jpg",
-  };
+const ProductCard = ({ product }) => {
+  const productStock = (product?.sold / product?.stock) * 100;
+  console.log(productStock);
 
   return (
-    <div className="">
+    <Link to={`/products/${product?._id}`} className="">
       <div className="group relative overflow-hidden border border-accent/10 rounded-md bg-white w-full transition-all duration-300 ease-in-out hover:border-primary hover:bg-black/5 ring-1 ring-accent/5 hover:ring-primary">
         {/* product image */}
         <figure className="cursor-pointer flex items-center justify-center py-3">
           <img
-            className="w-full h-28 md:h-36 lg:h-40 object-cover px-0 md:px-0 transition-transform duration-500 ease-in-out group-hover:backdrop-opacity-45 group-hover:scale-110"
-            src={product.image}
-            alt={product.name}
+            className="w-full h-28 md:h-36 lg:h-48 object-cover px-0 md:px-0 transition-transform duration-500 ease-in-out group-hover:backdrop-opacity-45 group-hover:scale-110"
+            src={product.thumbnail}
+            alt={product.title}
           />
           {/* overlay hover*/}
           <div className="absolute inset-0 bg-black/0 transition-all duration-500 group-hover:bg-black/50" />
@@ -33,7 +27,7 @@ const ProductCard = () => {
         <div className="text-accent px-3 py-2 md:py-3 md:px-4 border-t border-primary/20">
           {/* product name here */}
           <p className="text-accent font-medium text-sm md:text-base truncate w-full mb-1">
-            {product.name}
+            {product.title}
           </p>
 
           {/* product rating here */}
@@ -50,7 +44,7 @@ const ProductCard = () => {
           </div>
 
           {/* product price here */}
-          <div className="flex items-end justify-between mt-1">
+          <div className="flex items-end justify-between mt-2">
             <p className="text-base font-medium">
               {product?.offerPrice ? (
                 <p className="text-primary">
@@ -63,6 +57,17 @@ const ProductCard = () => {
                 <p className="text-primary"> ${product.price}</p>
               )}
             </p>
+          </div>
+
+          {/* stock quantity part */}
+          <div className="flex justify-between items-center gap-2 md:gap-10 mt-2">
+            <p className="flex-1 text-[10px] md:text-xs">Stock Level</p>
+
+            <progress
+              className="flex-1 progress progress-accent"
+              value={product?.sold}
+              max={product?.stock}
+            ></progress>
           </div>
         </div>
 
@@ -83,7 +88,7 @@ const ProductCard = () => {
           <div className="text-accent text-sm">
             {/* <p>{product.category}</p> */}
             <p className="text-accent font-medium text-sm truncate w-full mb-1">
-              {product.name}
+              {product.title}
             </p>
 
             {/* rating part here */}
@@ -115,12 +120,14 @@ const ProductCard = () => {
               </p>
             </div>
           </div>
-          <Button className="mt-2" card>
-            Add to Cart
-          </Button>
+          <Link to="/carts">
+            <Button className="mt-2" card>
+              Add to Cart
+            </Button>
+          </Link>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

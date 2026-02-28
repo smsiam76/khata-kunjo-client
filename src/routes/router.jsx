@@ -5,6 +5,7 @@ import Maintenance from "../pages/Maintenance/Maintenance";
 import Root from "../layouts/Root";
 import Home from "../pages/Home/Home";
 import Error404 from "../pages/ErrorPage/Error404";
+import ProductDetails from "../pages/Product/ProductDetails";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,11 @@ const router = createBrowserRouter([
       {
         path: "/",
         Component: Home,
+      },
+      {
+        path: "/products/:id",
+        Component: ProductDetails,
+        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
       }
     ]
   },

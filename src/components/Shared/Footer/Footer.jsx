@@ -12,9 +12,9 @@ const Footer = () => {
       <Link to="/">
         <img className="w-24 md:w-28" src={logo} alt="" />
       </Link>
-      <p className="mt-4 text-center">
-        Copyright © {year} - <Link className="transition-all duration-300 ease-linear hover:text-accent hover:underline" to="/">Khata Kunjo</Link>. All
-        rights reservered.
+      <p className="mt-4 text-center text-sm">
+        Copyright © {year} - All
+        rights reservered <Link className="transition-all duration-300 ease-linear hover:text-accent hover:underline" to="/">Khata Kunjo</Link>. 
       </p>
       <div className="flex items-center gap-4 mt-5">
             <a href=""><IconBox variant="facebook" className=""><FaFacebookF className="text-base"/></IconBox></a>

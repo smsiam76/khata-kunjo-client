@@ -37,7 +37,7 @@ const Banner = () => {
         }}
         pagination={{
           dynamicBullets: true,
-          clickable: true
+          clickable: true,
         }}
         autoplay={{
           delay: 3000,
