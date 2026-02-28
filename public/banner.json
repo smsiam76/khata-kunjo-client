@@ -1,0 +1,26 @@
+[
+    {
+        "subtitle": "New Semester Essentials",
+        "title": "STUDENT STATIONERY",
+        "description": "Get organized with our exclusive range of notebooks, pens, and planners.",
+        "buttonText": "View Collection",
+        "bg_img": "/src/assets/images/banner-1.webp",
+        "content_img": "/src/assets/images/demo-1.png"
+    },
+    {
+        "subtitle": "New Semester Essentials",
+        "title": "STUDENT STATIONERY",
+        "description": "Get organized with our exclusive range of notebooks, pens, and planners.",
+        "buttonText": "View Collection",
+        "bg_img": "/src/assets/images/banner-2.webp",
+        "content_img": "/src/assets/images/demo-1.png"
+    },
+    {
+        "subtitle": "New Semester Essentials",
+        "title": "STUDENT STATIONERY",
+        "description": "Get organized with our exclusive range of notebooks, pens, and planners.",
+        "buttonText": "View Collection",
+        "bg_img": "/src/assets/images/banner-3.webp",
+        "content_img": "/src/assets/images/demo-1.png"
+    }
+]
