@@ -5,14 +5,14 @@ import FeatureProduct from "./FeatureProduct/FeatureProduct";
 
 const produtPromise = fetch("http://localhost:5000/products").then((res) => res.json());
 const Home = () => {
-  const data = use(produtPromise);
-  console.log(data);
+  const products = use(produtPromise);
+ // console.log(products);
 
   return (
     <>
       <Banner />
       <Suspense fallback={"Loading"}>
-        <FeatureProduct data={data} />
+        <FeatureProduct products={products} />
       </Suspense>
       {/* <div className="grid grid-cols-5 gap-10">
         <ProductCard />

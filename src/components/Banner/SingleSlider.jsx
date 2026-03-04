@@ -9,7 +9,7 @@ const SingleSlider = ({ singleBanner }) => {
   const { subtitle, title, description, buttonText, bg_img, content_img } =
     singleBanner;
 
-  console.log(singleBanner);
+ // console.log(singleBanner);
 
   return (
     <>

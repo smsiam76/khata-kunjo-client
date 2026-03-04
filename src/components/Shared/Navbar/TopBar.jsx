@@ -1,4 +1,4 @@
-import React from "react";
+import React, { use } from "react";
 import Container from "../Container/Container";
 import { FaEnvelope, FaFacebookF, FaPhone, FaYoutube } from "react-icons/fa6";
 import { Link, NavLink } from "react-router";
@@ -10,8 +10,14 @@ import InputField from "../Input/InputField";
 import NavbarDrawer from "./NavbarDrawer";
 import { IoCartOutline } from "react-icons/io5";
 import IconBox from "../Box/IconBox";
+//import useCart from "../../../hooks/useCart";
 
+//const productPromise = fetch("http://localhost:5000/products").then(res => res.json());
 const TopBar = () => {
+  //const products = use(productPromise);
+ // const {carts} = useCart(products)
+ // console.log(carts);
+  
   return (
     <>
       {/* TopBar */}
@@ -77,12 +83,14 @@ const TopBar = () => {
                 </span>
 
               </Link> */}
-              <div className="relative w-10 h-10 flex items-center justify-center cursor-pointer group text-accent font-medium transition-all duration-300 ease-in-out hover:text-primary">
+              {/* this part will be reused after some days */}
+              {/* <Link to="/cart"
+               className="relative w-10 h-10 flex items-center justify-center cursor-pointer group text-accent font-medium transition-all duration-300 ease-in-out hover:text-primary">
                 <IoCartOutline className="text-2xl md:text-3xl" />
                 <span className="absolute -top-2 right-2 translate-2 text-xs text-white w-[18px] h-[18px] flex items-center justify-center rounded-full bg-primary text-md transition-all duration-300 ease-in-out group-hover:text-white">
-                  3
+                  {carts.length}
                 </span>
-              </div>
+              </Link> */}
               <button className="md:hidden w-8 h-8 md:w-10  md:h-10 flex items-center justify-center rounded-md p-2 bg-white text-primary transition-all duration-300 ease-in-out hover:bg-primary hover:text-white cursor-pointer border border-primary outline-0 hover:ring-1 hover:ring-primary hover:ring-offset-2">
                 <FaSearch className="text-sm md:text-base lg:text-lg" />
               </button>

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ProductCard from "../../../components/Shared/Card/ProductCard";
 
-const FeatureProduct = ({ data }) => {
+const FeatureProduct = ({ products }) => {
   return (
     <section className="my-16">
       <Container>
@@ -41,9 +41,9 @@ const FeatureProduct = ({ data }) => {
             spaceBetween="auto"
             className="mySwiper"
           >
-            {data.map((product) => (
+            {products.map((product) => (
               <SwiperSlide key={product?._id}>
-                <ProductCard product={product} />
+                <ProductCard products={products} product={product} />
               </SwiperSlide>
             ))}
           </Swiper>
