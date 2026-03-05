@@ -8,6 +8,7 @@ const IconBox = ({children, variant = "primary", className=""}) => {
         outline: "bg-white text-primary hover:bg-primary border-white hover:ring-white",
         facebook: "bg-white text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:ring-[#1877F2]",
         youtube: "bg-white text-[#FF0000] hover:bg-[#FF0000] hover:text-white hover:ring-[#FF0000]",
+        whatsapp: "bg-white text-green-400 hover:bg-green-400 hover:text-white hover:ring-[#FF0000]",
     }
     return (
         <span className={`${base} ${variants[variant]} ${className}`}>

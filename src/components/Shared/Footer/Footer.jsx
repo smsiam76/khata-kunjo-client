@@ -5,6 +5,7 @@ import IconBox from "../Box/IconBox";
 
 import { FaFacebookF, FaYoutube } from "react-icons/fa6";
 import { Link } from "react-router";
+import { FaWhatsapp } from "react-icons/fa";
 const Footer = () => {
     const year = format(new Date(), "yyyy")
   return (
@@ -18,7 +19,7 @@ const Footer = () => {
       </p>
       <div className="flex items-center gap-4 mt-5">
             <a href=""><IconBox variant="facebook" className=""><FaFacebookF className="text-base"/></IconBox></a>
-            <a href=""><IconBox variant="youtube" className=""><FaYoutube className="text-base"/></IconBox></a>
+            <a href=""><IconBox variant="whatsapp" className=""><FaWhatsapp className="text-base"/></IconBox></a>
       </div>
     </div>
   );

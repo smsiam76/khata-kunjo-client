@@ -1,14 +1,15 @@
-import React, { Suspense, use } from "react";
+import React, { Suspense, useContext } from "react";
 import Container from "../../components/Shared/Container/Container";
 import ProductCard from "../../components/Shared/Card/ProductCard";
 import Divider from "../../components/Shared/Box/Divider";
+import AuthContext from "../../provider/AuthContext";
+import { useLoaderData } from "react-router";
 
-const productsPromise = fetch("http://localhost:5000/products").then((res) =>
-  res.json(),
-);
+
 const Products = () => {
-  const products = use(productsPromise);
-  console.log(products);
+  const products = useLoaderData();
+  const {role} = useContext(AuthContext);
+  console.log(role);
 
   return (
     <section className="my-12">

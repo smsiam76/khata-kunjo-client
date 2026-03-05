@@ -2,13 +2,14 @@ import React from "react";
 
 import { FaHeart, FaLink, FaRegStar, FaStar } from "react-icons/fa";
 import Button from "../Button/Button";
-import { Link} from "react-router";
+import { Link } from "react-router";
+import { FaBangladeshiTakaSign } from "react-icons/fa6";
 // import { Link, useNavigate } from "react-router";
 //import useCart from "../../../hooks/useCart";
 
 const ProductCard = ({ product, products }) => {
   //const { addToCart } = useCart(products);
-  //const productStock = (product?.sold / product?.stock) * 100;
+  const productStock = ((product?.sold || 0) / (product?.stock || 1)) * 100;
   //const navigate = useNavigate();
   //console.log(products);
 
@@ -57,25 +58,30 @@ const ProductCard = ({ product, products }) => {
         {/* product price here */}
         <div className="flex items-end justify-between mt-2">
           {product?.offerPrice ? (
-            <p className="text-primary text-base font-medium">
-              ${product.offerPrice}{" "}
-              <span className="text-accent text-xs line-through">
-                ${product.price}
+            <p className="text-primary text-base font-medium flex items-center">
+               <FaBangladeshiTakaSign className="text-sm"/>{product.offerPrice}{" "}
+              <span className=" ml-2 text-accent text-xs line-through flex items-center">
+                 <FaBangladeshiTakaSign className="text-xs"/>{product.price}
               </span>
             </p>
           ) : (
-            <p className="text-primary"> ${product.price}</p>
+            <p className="text-primary flex items-center">  <FaBangladeshiTakaSign className="text-sm"/>{product.price}</p>
           )}
         </div>
 
         {/* stock quantity part */}
         <div className="flex justify-between items-center gap-2 md:gap-10 mt-2">
           <p className="flex-1 text-[10px] md:text-xs">Stock Level</p>
-
+          {/* 
           <progress
             className="flex-1 progress progress-accent"
-            value={product?.sold}
-            max={product?.stock}
+            value={`${product?.sold}`}
+            max={product?.inStock}
+          ></progress> */}
+          <progress
+            className="flex-1 progress progress-accent"
+            value={productStock}
+            max={"100"}
           ></progress>
         </div>
       </div>
@@ -121,14 +127,14 @@ const ProductCard = ({ product, products }) => {
           {/* price section here */}
           <div className="flex items-end justify-between mt-1">
             {product?.offerPrice ? (
-              <p className=" text-base font-medium text-primary">
-                ${product.offerPrice}{" "}
-                <span className="text-accent md:text-sm text-xs line-through">
-                  ${product.price}
+              <p className=" text-base font-medium text-primary flex-items-center flex items-center">
+                 <FaBangladeshiTakaSign className="text-sm"/>{product.offerPrice}{" "}
+                <span className="ml-2 text-accent md:text-sm text-xs line-through flex items-center">
+                   <FaBangladeshiTakaSign className="text-xs"/>{product.price}
                 </span>
               </p>
             ) : (
-              <p className="text-primary"> ${product.price}</p>
+              <p className="text-primary flex items-center">  <FaBangladeshiTakaSign className="text-sm"/>{product.price}</p>
             )}
           </div>
         </div>

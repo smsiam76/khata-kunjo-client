@@ -12,6 +12,10 @@ import Products from "../pages/Product/Products";
 import SignUp from "../pages/Authantication/SignUp";
 import SpiralCategory from "../pages/Categories/SpiralCategory";
 import SelaiCategtory from "../pages/Categories/SelaiCategtory";
+import AddProducts from "../pages/Admin/AddProducts";
+import Profile from "../pages/Dashboard/Profile";
+import AdminRoute from "./AdminRoute";
+import Contact from "../pages/Contact/Contact";
 
 const router = createBrowserRouter([
   {
@@ -27,23 +31,43 @@ const router = createBrowserRouter([
       {
         path: "/products",
         Component: Products,
+        loader: () => fetch("http://localhost:5000/products/")
       },
       {
         path: "/products/category/spiral",
-        Component: SpiralCategory, 
+        Component: SpiralCategory,
+        loader: () => fetch("http://localhost:5000/products")
       },
       {
-        path: "/products/category/selai",
-        Component: SelaiCategtory, 
+        path: "/products/category/binding",
+        Component: SelaiCategtory,
+        loader: () => fetch("http://localhost:5000/products")
       },
       {
         path: "/products/:id",
         Component: ProductDetails,
-        loader: ({params}) => fetch(`http://localhost:5000/products/${params.id}`)
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
       },
       {
-        path: "/sign-up",
+        path: "/contact",
+        Component: Contact,
+      },
+      {
+        path: "/register",
         Component: SignUp,
+      },
+      {
+        path: "/dashboard/profile",
+        Component: Profile,
+      },
+      {
+        path: "/admin/add-products",
+        element: (
+          <AdminRoute>
+            <AddProducts></AddProducts>
+          </AdminRoute>
+        ),
       },
       // {
       //   path: "/cart",
@@ -54,7 +78,7 @@ const router = createBrowserRouter([
       //   path: "/checkout",
       //   element: <CheckoutForm></CheckoutForm>
       // }
-    ]
+    ],
   },
 ]);
 

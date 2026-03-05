@@ -40,7 +40,7 @@ const Navbar = () => {
   const categories = <>
     <Link className="py-3 px-4 border border-white/20 hover:bg-primary" to="/products">All Khata</Link>
     <Link className="py-3 px-4 border border-white/20 hover:bg-primary" to="/products/category/spiral">Spiral Khata</Link>
-    <Link className="py-3 px-4 border border-white/20 hover:bg-primary" to="/products/category/selai">Selai Khata</Link>
+    <Link className="py-3 px-4 border border-white/20 hover:bg-primary" to="/products/category/binding">Binding Khata</Link>
    
   </>
   return (

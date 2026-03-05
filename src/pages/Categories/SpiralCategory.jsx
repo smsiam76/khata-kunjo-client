@@ -1,14 +1,13 @@
-import React, { use } from "react";
+import React from "react";
 import Loader from "../../components/Shared/Loader/Loader";
 import ProductCard from "../../components/Shared/Card/ProductCard";
 import Container from "../../components/Shared/Container/Container";
 import Divider from "../../components/Shared/Box/Divider";
+import { useLoaderData } from "react-router";
 
-const productsPromise = fetch("http://localhost:5000/products").then((res) =>
-  res.json(),
-);
+
 const SpiralCategory = () => {
-  const productsAll = use(productsPromise);
+  const productsAll = useLoaderData();
   //const [spiralCategory, setSpiralCategory] = useState([]);
 
   const products = productsAll?.filter(product => product.category === "Spiral");

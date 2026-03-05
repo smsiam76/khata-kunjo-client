@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Container from "../../components/Shared/Container/Container";
-import { Link, useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import InputField from "../../components/Shared/Input/InputField";
-import { FaPlus } from "react-icons/fa6";
+import { FaBangladeshiTakaSign, FaPlus } from "react-icons/fa6";
 import {
   FaFacebookF,
   FaMinus,
@@ -13,49 +13,119 @@ import {
 import Button from "../../components/Shared/Button/Button";
 import Divider from "../../components/Shared/Box/Divider";
 import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
-import { addToStoredCart } from "../../utility/addToDB";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+// import { addToStoredCart } from "../../utility/addToDB";
+
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/navigation";
+import "swiper/css/thumbs";
+
+// import './styles.css';
 
 const ProductDetails = () => {
   //const [count, setCount] = useState(0);
   const singleProduct = useLoaderData();
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   // console.log(singleProduct);
   const {
+    _id,
     title,
     thumbnail,
+    gallery,
     category,
     description,
     price,
     size,
-    pages,
-    stock,
+    pagesNo,
+    pagesType,
+    // inStock,
     offerPrice,
     brand,
     quality,
-    productCode,
+    // productCode,
     gsm,
   } = singleProduct;
 
-  const handleAddToCart = (id) => {
-    addToStoredCart(id);
-    navigate("/cart");
-  };
+  const productCode = `KK-${category.slice(0, 3).toUpperCase()}-${_id.slice(-4)}`;
+  console.log(productCode);
 
-  const message = `আমি ${singleProduct?.title} (${singleProduct?.productCode})অর্ডার করতে চাই`;
+  // const handleAddToCart = (id) => {
+  //   addToStoredCart(id);
+  //   navigate("/cart");
+  // };
+
+  const message = `আমি ${singleProduct?.title} (${productCode})অর্ডার করতে চাই`;
   const encoded = encodeURIComponent(message);
 
+  const [thumbsSwiper, setThumbsSwiper] = useState(null);
   return (
     <section className="py-8 md:py-16">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-10 mb-8">
-          <figure className="md:col-span-5">
+          {/* <figure className="md:col-span-5">
+            <img
+              className="w-full md:h-110 object-cover rounded-md"
+              src={thumbnail}
+              alt=""
+            />
+          </figure> */}
+          <div className="md:col-span-5">
+            {gallery ? (
+              <>
+                <Swiper
+                  style={{
+                    "--swiper-navigation-color": "#fff",
+                    "--swiper-pagination-color": "#fff",
+                  }}
+                  spaceBetween={10}
+                  navigation={true}
+                  thumbs={{ swiper: thumbsSwiper }}
+                  modules={[FreeMode, Navigation, Thumbs]}
+                  className="mySwiper2"
+                >
+                  {gallery?.map((singleImage, idx) => (
+                    <SwiperSlide key={idx}>
+                      <img
+                        className="w-full h-[440px] object-cover"
+                        src={singleImage}
+                        alt=""
+                      />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <div className="border border-primary/20 w-auto mt-4">
+                  <Swiper
+                    onSwiper={setThumbsSwiper}
+                    spaceBetween={10}
+                    slidesPerView={4}
+                    freeMode={true}
+                    watchSlidesProgress={true}
+                    modules={[FreeMode, Navigation, Thumbs]}
+                    className="mySwiper"
+                  >
+                    {gallery.map((singleImage, idx) => (
+                      <SwiperSlide key={idx}>
+                        <img className="" src={singleImage} alt="" />
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+              </>
+            ) : (
+              <>
+                <figure className="md:col-span-5">
             <img
               className="w-full md:h-110 object-cover rounded-md"
               src={thumbnail}
               alt=""
             />
           </figure>
+              </>
+            )}
+          </div>
           <div className="md:col-span-7">
             <h3 className="text-accent text-2xl font-bold">{title}</h3>
             <div className="mb-4">
@@ -64,14 +134,14 @@ const ProductDetails = () => {
               </p>
 
               {offerPrice ? (
-                <p className="text-primary text-xl font-bold">
-                  ${offerPrice}{" "}
-                  <span className="text-accent text-base line-through">
-                    ${price}
+                <p className="text-primary text-xl font-bold flex items-center">
+                  <FaBangladeshiTakaSign className="text-sm"/>{offerPrice}
+                  <span className="ml-2 text-accent text-base line-through flex items-center">
+                    <FaBangladeshiTakaSign className="text-xs"/>{price}
                   </span>
                 </p>
               ) : (
-                <p className="text-primary"> ${price}</p>
+                <p className="text-primary flex items-center"> <FaBangladeshiTakaSign className="text-sm"/>{price}</p>
               )}
             </div>
             <Divider />
@@ -100,16 +170,18 @@ const ProductDetails = () => {
 
                     <tr>
                       <th>Pages</th>
-                      <td>{pages}</td>
+                      <td>
+                        {pagesNo} <span className="text-xs">({pagesType})</span>
+                      </td>
                     </tr>
                     <tr>
                       <th>GSM</th>
                       <td>{gsm}</td>
                     </tr>
-                    <tr>
+                    {/* <tr>
                       <th>Stock</th>
-                      <td>{stock}</td>
-                    </tr>
+                      <td>{inStock}</td>
+                    </tr> */}
                   </tbody>
                 </table>
               </div>
